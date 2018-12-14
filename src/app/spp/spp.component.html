@@ -1,0 +1,41 @@
+<form novalidate
+          (ngSubmit)="save()"
+          [formGroup]="sppForm">
+          <select formControlName = "optionType">
+              <option>A</option>
+              <option>B</option>
+
+          </select>
+<table>
+  <tr>
+    <td formArrayName="tickets"
+    *ngFor="let ticket of sppForm.get('tickets').controls; let i=index">
+    
+    <div [formGroupName]="i">
+    <input class="form-control"
+      id="ticketNumber"
+      type="text"
+      placeholder="Ticket Number"
+      formControlName="ticketNumber" />
+      
+      <input class="form-control"
+      id="currency"
+      type="text"
+      placeholder="Currency"
+      formControlName="currency" />
+      </div>
+    </td>
+    
+  </tr>
+  
+ 
+</table>
+<button class="btn btn-outline-primary"
+                    type="button"
+                                      
+                    (click)="addTickets()">
+              Dynamically Add
+            </button>
+</form>
+
+{{sppForm.value| json}}
